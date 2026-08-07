@@ -243,13 +243,14 @@ function initPage(pageKey){
   /* ---- reminder text for the class/department group chat ---- */
   function buildReminder(){
     const up=visible().filter(i=>i.days>=0).slice(0,10);
-    const head = "📢 " + (cfg.title || "Upcoming dates");
+    const head = "_*📢 " + (cfg.title || "Upcoming dates") + "*_";
     if(!up.length) return head + "\n\nNothing upcoming right now. ✅";
+     // The below lines is formatted for whatsapp decorations using *bold*, _italic_, > quote, `code`, * list item
     const lines=up.map(i=>
-      `• ${i.Batch?`(${i.Batch}) `:""}${i.Type?`[${i.Type}] `:""}${i.Topic} — ${fmtDate(i.dt)} (${countdownText(i.days)})`
+      `* ${i.Batch?`(${i.Batch}) `:""}${i.Type?`\`[${i.Type}]\` `:""}*${i.Topic}* — ${fmtDate(i.dt)} (${countdownText(i.days)})`
       + (i.Note?` — ${i.Note.replace(/\n+/g,"; ")}`:"")
     );
-    return head + "\n\n" + lines.join("\n") + "\n\nStay ready! 💪";
+    return head + "\n\n" + lines.join("\n") + "\n\n> Stay ready! 💪";
   }
 
   /* ---- events ---- */
