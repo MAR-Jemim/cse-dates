@@ -443,8 +443,8 @@ function render(){
 function buildReminder(){
   const up=ITEMS.filter(i=>i.days>=0).slice(0,8);
   if(!up.length) return "📢 No upcoming CT / assignment / presentation dates right now. ✅";
-  const lines=up.map(i=>`• ${i.Type?`[${i.Type}] `:""}${i.Topic} — ${fmtDate(i.dt)} (${countdownText(i.days)})${i.Note?` — ${i.Note}`:""}`);
-  return "📢 Upcoming dates — CSE Batch\n\n"+lines.join("\n")+"\n\nStay ready! 💪";
+  const lines=up.map(i=>`• *${i.Type?`[${i.Type}] `:""}${i.Topic}* — ${fmtDate(i.dt)} (${countdownText(i.days)})${i.Note?` — ${i.Note}`:""}`);
+  return "*_📢 Upcoming dates — CSE Batch_*\n\n"+lines.join("\n")+"\n\n> Stay ready! 💪";
 }
 document.getElementById("copyBtn").addEventListener("click",async e=>{
   const txt=buildReminder();
